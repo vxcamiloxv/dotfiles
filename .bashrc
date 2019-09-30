@@ -14,7 +14,7 @@ alias screen="screen -aAxRl"
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
   ssh-agent > ~/.ssh-agent-pid
 fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
+if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f "~/.ssh-agent-pid" ]]; then
   eval "$(<~/.ssh-agent-pid)" > /dev/null
 fi
 
@@ -109,7 +109,7 @@ alias buscarPaquete="apt-cache search"
 alias limpiar="sudo apt-get autoclean"
 
 #Custom PATH
-PATH="$HOME.guix-profile/bin:$HOME/.config/guix/current/bin:${PATH}:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:$HOME/.scripts/"
+PATH="$HOME/.guix-profile/bin:$HOME/.config/guix/current/bin:${PATH}:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:$HOME/.scripts/"
 
 # Start GNU screen
 #[[ $TERM != "screen" ]] && exec screen -q
@@ -195,7 +195,9 @@ alias l='ls -CF'
 
 # GUIX
 GUIX_PROFILE="$HOME/.guix-profile"
-. "$GUIX_PROFILE/etc/profile"
+if [ -f "$GNIX_PROFILE" ]; then
+    . "$GUIX_PROFILE/etc/profile"
+fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
