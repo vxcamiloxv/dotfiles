@@ -1,0 +1,14 @@
+
+paste
+extracthere 
+compress 
+compress test .zip
+compress test.zip
+compress test.zip algo
+compress test2.zip algo
+compress test2.tar.gz
+cd Documents/Development/
+tab_close 
+cd ~/.config
+rename pago-apto-jul-2018.pdf
+rename pago-apto-ago-2018.pdf
