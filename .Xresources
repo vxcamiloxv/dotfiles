@@ -1,0 +1,138 @@
+! GENERAL
+!---------
+
+! Fonts
+!Xft.autohint: false
+!Xft.lcdfilter: lcddefault
+!Xft.hintstyle: hintslight
+!Xft.hinting: true
+!Xft.antialias: true
+!Xft.rgba: rgb
+
+
+! ROFI
+!---------
+
+! Theme
+rofi.color-enabled: true
+rofi.color-window: #001214, #005050, #005050
+rofi.color-normal: #001214, #00ffff, #001e21, #00475a, #ffffff
+rofi.color-active: #00d1d1, #001214, #00d1d1, #00ffff, #001214
+rofi.color-urgent: #001214, #e0c625, #022326, #e0c625, #001214
+
+! Other
+rofi.opacity: 90
+rofi.width: 100
+rofi.lines: 5
+rofi.columns: 1
+rofi.font: Hack 9
+rofi.hide-scrollbar: true
+rofi.bw: 2
+rofi.location: 1
+rofi.padding: 2
+rofi.yoffset: -2
+rofi.xoffset: 0
+rofi.fixed-num-lines: 1
+rofi.terminal: urxvt
+rofi.modi: combi,run,ssh
+!rofi.modi: window,drun,run,ssh
+rofi.combi-modi: window,drun
+rofi.key-combi: Alt+Tab
+!rofi.key-window: F12
+!rofi.key-drun: control+space
+!rofi.key-ssh: mod1+F3
+
+! URxvt
+!--------
+
+! Extensions
+URxvt.perl-ext-common: default,vtwheel,matcher,url-select,clipboard,tabbedex,font-size,keyboard-select
+
+! Misc settings
+URxvt.iconFile: /usr/share/icons/hicolor/24x24/apps/terminator.png
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+URxvt.pointerBlank: true
+URxvt.intensityStyles: true
+URxvt.saveLines: 4096
+URxvt.skipBuiltinGlyph: false
+URxvt.urgentOnBell: true
+URxvt.visualBell: true
+URxvt.internalBorder: 2
+
+! Scroll
+URxvt.scrollBar: false
+URxvt.skipScroll: true
+URxvt.jumpScroll: true
+URxvt.scrollTtyKeypress: true
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyOutput: false
+URxvt.secondaryScreen: true
+URxvt.secondaryScroll: false
+
+! Colors and Font
+URxvt.depth: 32
+URxvt.background: [95]#000E10
+URxvt.foreground: #15ABC3
+URxvt.cursorColor: #00FFFF
+URxvt.font: xft:Hack:size=9:antialias=true,xft:monospace:size=9:antialias=true,xft:Noto Color Emoji,xft:Symbola
+
+!black
+URxvt.color0: #222222
+URxvt.color8: #666666
+!red
+URxvt.color1: #E84F4F
+URxvt.color9: #D23D3D
+!green
+URxvt.color2: #B7CE42
+URxvt.color10: #BDE077
+!yellow
+URxvt.color3: #C4E969
+URxvt.color11: #C4E969
+!blue
+URxvt.color4: #2B3944
+URxvt.color12: #729FCF
+!URxvt.color4: #66AABB
+!URxvt.color12: #AACCBB
+!magenta
+URxvt.color5: #B7416E
+URxvt.color13: #E16A98
+!cyan
+URxvt.color6: #6D878D
+URxvt.color14: #42717B
+!white
+URxvt.color7: #F2F1F0
+URxvt.color15: #F2F1F0
+
+URxvt.scrollstyle: plain
+
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.rend.0: Uline Bold fg5
+URxvt.matcher.button: 1
+
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+
+URxvt.clipboard.autocopy: true
+URxvt.keyboard-select.clipboard: true
+
+URxvt.keysym.M-n:           perl:url-select:select_next
+URxvt.keysym.M-S:           perl:keyboard-select:activate
+URxvt.keysym.M-N:           perl:keyboard-select:search
+URxvt.keysym.M-w:           perl:clipboard:copy
+URxvt.keysym.C-y:           perl:clipboard:paste
+URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
+URxvt.keysym.M-C-n:         command:\033]710;screen\007
+URxvt.keysym.Mod4-plus:     perl:font-size:increase
+URxvt.keysym.Mod4-minus:    perl:font-size:decrease
+URxvt.keysym.Mod4-equal:    perl:font-size:reset
+URxvt.keysym.Mod4-question: perl:font-size:show
+URxvt.keysym.C-9:           perl:font-size:show
+
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+URxvt.tabbed.autohide:  yes
+URxvt.tabbed.new-button:  no
+URxvt.tabbed.title: no
