@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Midnight Commander
+GenericName=File manager
+Comment=Visual file manager
+Exec=urxvtcd -name Mc -title mc -e mc %F
+Terminal=true
+Icon=folder
+MimeType=inode/directory
+Categories=Utility;FileManager;

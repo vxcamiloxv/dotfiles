@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=urxvt (screen)
+Comment=An unicode capable rxvt clone
+Exec=urxvt -e /bin/bash -c "screen -aAxR"
+#Icon=utilities-terminal
+#Icon=final-term
+Icon=terminator
+Terminal=false
+Type=Application
+Categories=System;TerminalEmulator;

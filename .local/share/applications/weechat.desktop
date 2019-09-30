@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=WeeChat
+GenericName=Chat client
+Comment=Console extensible chat client
+Exec=weechat
+Terminal=true
+Icon=weechat
+Categories=Network;InstantMessaging;
