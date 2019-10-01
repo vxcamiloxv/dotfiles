@@ -1,0 +1,6 @@
+[submodule ".urxvt/ext/tabbedex-urxvt"]
+	path = .urxvt/ext/tabbedex-urxvt
+	url = https://github.com/shaggytwodope/tabbedex-urxvt.git
+[submodule ".urxvt/ext/urxvt-scripts"]
+	path = .urxvt/ext/urxvt-scripts
+	url = https://github.com/pkkolos/urxvt-scripts.git
