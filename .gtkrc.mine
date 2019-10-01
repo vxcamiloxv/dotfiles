@@ -1,5 +1,15 @@
+
 ##################
-#     ICONS      #
+# ICONS          #
 ##################
 
 gtk-icon-theme-name = "Moka"
+
+##################
+# FONTS          #
+##################
+
+style "user-font" {
+	font_name = "Cantarell 10"
+}
+widget_class "*" style "user-font"
