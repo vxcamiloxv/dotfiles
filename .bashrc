@@ -12,7 +12,7 @@ alias screen="screen -aAxRl"
 
 # SSH managment
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-  ssh-agent > ~/.ssh-agent-pid
+  ssh-agent -a "$SSH_AUTH_SOCK" > ~/.ssh-agent-pid
 fi
 if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f "~/.ssh-agent-pid" ]]; then
   eval "$(<~/.ssh-agent-pid)" > /dev/null
