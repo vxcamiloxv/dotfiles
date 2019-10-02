@@ -225,7 +225,7 @@ echo "$(tput setaf 2)
     |  (_|| (_||_)(_)|(_|      |  Linux-Libre `uname -rm`
   ===========================  |  $(tput setaf 1)
 $(tput sgr0)"
-fortune ciencia vida libertad hackers liberacion | cowsay -f small
+fortune ciencia vida libertad hackers liberacion | cowsay -f ~/.cowsay/small.cow
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
