@@ -75,7 +75,7 @@ URxvt.depth: 32
 URxvt.background: [95]#000E10
 URxvt.foreground: #15ABC3
 URxvt.cursorColor: #00FFFF
-URxvt.font: xft:Hack:size=9:antialias=true,xft:monospace:size=9:antialias=true,xft:Noto Color Emoji,xft:Symbola
+URxvt.font: xft:Hack:size=9:antialias=true:hinting=true,xft:monospace:size=9:antialias=true,xft:Noto Color Emoji,xft:Unifont,xft:Symbola
 
 !black
 URxvt.color0: #222222
