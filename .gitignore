@@ -1,3 +1,7 @@
+# Allow all dot files because is a dotfiles repo :D
+!.*
+
+# Ignore logs
 logs
 *.log
 *.logs
