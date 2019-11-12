@@ -34,8 +34,7 @@ rofi.yoffset: -2
 rofi.xoffset: 0
 rofi.fixed-num-lines: 1
 rofi.terminal: urxvt
-rofi.modi: combi,run,ssh
-!rofi.modi: window,drun,run,ssh
+rofi.modi: combi,run,ssh,clipmenu:env CM_LAUNCHER=rofi-script clipmenu
 rofi.combi-modi: window,drun
 rofi.key-combi: Alt+Tab
 !rofi.key-window: F12
