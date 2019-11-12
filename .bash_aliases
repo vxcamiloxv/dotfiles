@@ -33,7 +33,7 @@ alias prime-enable="export DRI_PRIME=1"
 alias prime-disable="export DRI_PRIME=0"
 
 # Custom ~/.scripts commands
-alias pass="$HOME/.scripts/passp"
+alias pass="$HOME/.scripts/pass/passp"
 alias pomf="$HOME/.scripts/pomf.py"
 alias pomf-w="$HOME/.scripts/scrotpomf.sh"
 alias capas2png="$HOME/.scripts/Inkscape/layers2pngs.py"
