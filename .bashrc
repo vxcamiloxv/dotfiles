@@ -1,145 +1,101 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# This file is sourced by all *interactive* bash shells on startup,
+# including some apparently interactive shells such as scp and rcp
+# that can't tolerate any output.  So make sure this doesn't display
+# anything or bad things will happen !
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-#[[ $- != *i* ]] && return
+
+# Test for an interactive shell.  There is no need to set anything
+# past this point for scp and rcp, and it's important to refrain from
+# outputting anything in those cases.
+if [[ $- != *i* ]] ; then
+	# Shell is non-interactive.  Be done now!
+	return
+fi
+
 # Start GNU Screen
 alias screen="screen -aAxRl"
 #[[ -z "$STY" ]] && screen
 
+############
+# MOTD
+############
+echo "$(tput setaf 2)
+                               |
+     __                        |  GNU en `hostname`
+    |__)_  _ _ |_  _ | _       |  `date +"%A, %e %B %Y, %r"`
+    |  (_|| (_||_)(_)|(_|      |  Linux-Libre `uname -rm`
+  ===========================  |  $(tput setaf 1)
+$(tput sgr0)"
+fortune ciencia vida libertad hackers liberacion | cowsay -f ~/.cowsay/small.cow
+
+########################
+# Init management
+########################
 
 # SSH managment
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
   ssh-agent -a "$SSH_AUTH_SOCK" > ~/.ssh-agent-pid
 fi
-if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f "~/.ssh-agent-pid" ]]; then
-  eval "$(<~/.ssh-agent-pid)" > /dev/null
+if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f "$HOME/.ssh-agent-pid" ]]; then
+    eval "$(<~/.ssh-agent-pid)" > /dev/null
 fi
 
-# Set Default Editor
+# Start GNU screen
+#[[ $TERM != "screen" ]] && exec screen -q
+
+########################
+# Shell Variables
+########################
 export EDITOR="$(if [[ -n $DISPLAY ]]; then echo 'em'; else echo 'emc'; fi)"
 export GIT_EDITOR="$(if [[ -n $DISPLAY ]]; then echo 'git-editor'; else echo 'emc'; fi)"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
-# Alias General
-alias tunelCps="ssh cquimbayo@104.198.196.141 -L 5433:localhost:5432 -L 6480:localhost:6480 -L 3307:localhost:3306"
-alias how="~/Documents/Development/App/node_modules/phonegap/bin/phonegap.js"
-alias how-cordova="~/Documents/Development/App/node_modules/cordova/bin/cordova"
-alias appmap="~/appMap/node_modules/phonegap/bin/phonegap.js"
-alias appmap_cordova="~/appMap/node_modules/cordova/bin/cordova"
-alias s="screen"
-#alias ssh="~/.scripts/ssh/ssh-ident"
-
-# Alias Work
-alias cps="cd ~/Documents/Development/CPS"
-alias cpsCity="cps && cd cps-repos/branch/version2city/mobileApp/cpsApp"
-alias cpsApp="cps && cd cps-repos/branch/version2cr/mobileApp/cpsApp"
-alias cpsPhonegap="../node_modules/phonegap/bin/phonegap.js"
-alias cpsCordova="../node_modules/cordova/bin/cordova"
-
-# Alias Utils
-alias apagar="sudo shutdown -h 14:20"
-alias acortar='curl -s "http://is.gd/create.php?format=simple&url=`xsel -po`" | xsel -pi'
-alias search-word="find . -type f -print0 | xargs -0 grep -l $1"
-alias jpg-optimized="find . -name *.jpg -exec jpegoptim --max=80 -t '$i' {} \;"
-alias mpc="ncmpcpp"
-alias emc="em -nw"
-alias mu4e="em -c -n --eval '(mu4e)'"
-alias prime_enable="export DRI_PRIME=1"
-alias prime_disable="export DRI_PRIME=0"
-
-# Alias .scripts home
-alias pomf="$HOME/.scripts/pomf.py"
-alias pomf-w="$HOME/.scripts/scrotpomf.sh"
-alias capas2png="$HOME/.scripts/Inkscape/layers2pngs.py"
-alias tvgnu="$HOME/.scripts/TVenGNU.sh"
-alias hastebin="$HOME/.scripts/haste.sh"
-alias haste="HASTE_SERVER=http://vte.ardervegan.info haste"
-alias davpush="$HOME/.scripts/davpush.pl"
-alias lessw="node $HOME/.scripts/node/lessw.js"
-
-# Alias Virtualenv
-vePath="$HOME/.virtualenv/bin"
-alias lstream="${vePath}/livestreamer-curses"
-
-# muestra directorios
-function cdl { cd $1; ls;}
-alias home="cd $HOME/"
-alias musica="cd $HOME/Música"
-alias descargas="cd $HOME/Descargas"
-alias escritorio="cd $HOME/Escritorio"
-alias publico="cd $HOME/Público"
-alias videos="cd $HOME/Videos"
-alias imagenes="cd $HOME/Imágenes"
-
-# Agregar repositorios
-alias repo="sudo add-apt-repository $1"
-
-# Actalizar Grub2 Parabola
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-
-# Construir dependencias
-alias dependencias="sudo apt-get build-dep $1"
-
-# Alias Plowshare
-alias bajar="plowdown"
-alias subir="plowup"
-
-#bajar flash
-alias flash="get_flash_videos"
-alias video="movgrab"
-
-# Alias para aptitude
-alias actualizar="sudo aptitude update"
-alias update-full="sudo aptitude full-upgrade -y && sudo aptitude clean"
-alias buscar-app="sudo aptitude search"
-alias instalar="sudo aptitude install $1"
-alias quitar="sudo aptitude remove -purge z"
-alias crean="sudo aptitude clean"
-
-# Alias para apt-get
-alias install="sudo apt-get install $1"
-alias remove="sudo apt-get remove $1"
-alias purge="sudo apt-get purge $1"
-alias update="sudo apt-get update"
-alias dist-upgrade="sudo apt-get dist-upgrade"
-alias buscarPaquete="apt-cache search"
-alias limpiar="sudo apt-get autoclean"
-
 #Custom PATH
-PATH="$HOME/.guix-profile/bin:$HOME/.config/guix/current/bin:${PATH}:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:$HOME/.scripts/"
-
-# Start GNU screen
-#[[ $TERM != "screen" ]] && exec screen -q
+PATH="${PATH}:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:$HOME/.scripts/"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
 
-# append to the history file, don't overwrite it
-shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+#######################
+# Set shell behavior
+#######################
+
+# append to the history file, don't overwrite it
+shopt -s histappend
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# Disable completion when the input buffer is empty.  i.e. Hitting tab
+# and waiting a long time for bash to expand all of $PATH.
+shopt -s no_empty_cmd_completion
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
+#############################
+# Distribution configuration
+#############################
+
+# On Debian set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
+    chroot_prompt="${debian_chroot:+($debian_chroot)}"
 fi
+
+#######################
+# Colors support
+#######################
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    [aEkx]term*|rxvt*|gnome*|konsole*|screen|cons25|*color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -152,61 +108,57 @@ if [ -n "$force_color_prompt" ]; then
 	# We have color support; assume it's compliant with Ecma-48
 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
 	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+	    color_prompt=yes
     else
-	color_prompt=
+	    color_prompt=no
     fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='\[\e[0;0m\]┌─ \u\[\e[33;1m\]@\h \[\033[01;34m\]\W\[\033[00m\] \[\e[0;1m\]\n└──┤|▶ \[\e[0m\]'
+    PS1='${chroot_prompt}\[\e[0;0m\]┌─ \u\[\e[33;1m\]@\h \[\033[01;34m\]\W\[\033[00m\] \[\e[0;1m\]\n└──┤|▶ \[\e[0m\]'
 else
-    PSI='[\u@\h \W]\$ '
-    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PSI='[${chroot_prompt}\u@\h \W]\$ '
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+# # Change the window title of X terminals
+case ${TERM} in
+	[aEkx]term*|rxvt*|gnome*|konsole*|interix)
+	    PS1="\[\e]0;${chroot_prompt}\u@\h:\w\a\]$PS1"
+		;;
+	screen*)
+		PS1="\[\033k${chroot_prompt}\u@\h:\w\033\\\]$PS1"
+		;;
+	*)
+		;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
+#######################
+# Alias definitions
+#######################
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# GUIX
-GUIX_PROFILE="$HOME/.guix-profile"
-if [ -f "$GNIX_PROFILE" ]; then
-    . "$GUIX_PROFILE/etc/profile"
-fi
-
-# Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+##########################
+# Load additional path
+# definitions
+##########################
+
+# Guix
+[[ -f ~/.guix.sh ]] && . ~/.guix.sh
+
+# NPM/Node.js
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+###########################
+# Completion configuration
+###########################
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -215,25 +167,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-#MOTD
-
-
-echo "$(tput setaf 2)
-                               |
-     __                        |  GNU en `hostname`
-    |__)_  _ _ |_  _ | _       |  `date +"%A, %e %B %Y, %r"`
-    |  (_|| (_||_)(_)|(_|      |  Linux-Libre `uname -rm`
-  ===========================  |  $(tput setaf 1)
-$(tput sgr0)"
-fortune ciencia vida libertad hackers liberacion | cowsay -f ~/.cowsay/small.cow
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-# NPM/Node.js
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 ###-begin-npm-completion-###
 #
 # npm command completion script
@@ -291,9 +224,12 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-## Proxy
+#######################
+# Proxy configuration
+#######################
 http_proxy="http://localhost:8118"
 https_proxy="http://localhost:8118"
 ftp_proxy="ftp://localhost:8118"
