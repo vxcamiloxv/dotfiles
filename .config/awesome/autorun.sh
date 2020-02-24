@@ -8,9 +8,9 @@ primary_screen=($(xrandr | grep -w connected | sed 's/primary //' | awk -F'[ +]'
 setxkbmap latam
 
 # Touchpad config
-xinput --set-prop 14 "libinput Natural Scrolling Enabled" 1
-xinput --set-prop 14 "libinput Click Method Enabled" {1 1}
-xinput --set-prop 14 "libinput Tapping Enabled" 1
+#xinput --set-prop 14 "libinput Natural Scrolling Enabled" 1
+#xinput --set-prop 14 "libinput Click Method Enabled" {1 1}
+#xinput --set-prop 14 "libinput Tapping Enabled" 1
 
 # Composition
 run xcompmgr
@@ -22,7 +22,7 @@ run urxvtd -q -o
 run udiskie --smart-tray --notify
 run emacs --daemon --no-splash
 run kupfer --no-splash
-run owncloud
+run nextcloud
 #pgrep light-locker || light-locker &
 run redshift-gtk
 run xss-lock -- sflock -xshift $((${primary_screen[2]} / 2)) &
