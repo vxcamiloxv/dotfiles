@@ -32,12 +32,13 @@ fortune ciencia vida libertad hackers liberacion | cowsay -f ~/.cowsay/small.cow
 # Init management
 ########################
 
-# SSH managment
+# SSH management
+SSH_PID="$XDG_RUNTIME_DIR/ssh-agent.pid"
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-  ssh-agent -a "$SSH_AUTH_SOCK" > ~/.ssh-agent-pid
+    ssh-agent > "$SSH_PID"
 fi
-if [[ "$SSH_AGENT_PID" == "" ]] && [[ -f "$HOME/.ssh-agent-pid" ]]; then
-    eval "$(<~/.ssh-agent-pid)" > /dev/null
+if [[ ! "$SSH_AUTH_SOCK" ]] && [[ -f "$SSH_PID" ]]; then
+    eval "$(<"$SSH_PID")" > /dev/null
 fi
 
 # Start GNU screen
@@ -230,10 +231,12 @@ fi
 #######################
 # Proxy configuration
 #######################
-http_proxy="http://localhost:8118"
-https_proxy="http://localhost:8118"
-ftp_proxy="ftp://localhost:8118"
-HTTP_PROXY="http://localhost:8118"
-HTTPS_PROXY="http://localhost:8118"
-FTP_PROXY="ftp://localhost:8118"
+if pgrep privoxy > /dev/null; then
+    http_proxy="http://localhost:8118"
+    https_proxy="http://localhost:8118"
+    ftp_proxy="ftp://localhost:8118"
+    HTTP_PROXY="http://localhost:8118"
+    HTTPS_PROXY="http://localhost:8118"
+    FTP_PROXY="ftp://localhost:8118"
+fi
 
