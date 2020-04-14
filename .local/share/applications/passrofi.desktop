@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Password store
+Comment=The standard unix password manager
+Comment[es]=El administrador de contraseñas unix estándar
+Exec=rofi -modi "pass:~/.scripts/pass/passrofi" -show %U
+Terminal=false
+Icon=system
+Categories=Security;Application;
+StartupNotify=true
+Keywords=pass;security
