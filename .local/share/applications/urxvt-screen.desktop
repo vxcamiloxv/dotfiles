@@ -1,9 +1,10 @@
 [Desktop Entry]
 Version=1.0
-Name=urxvt
+Name=urxvt (screen)
 Comment=An unicode capable rxvt clone
-Exec=urxvtcd
+Exec=urxvtcd -e /bin/bash -c "screen -aAxR"
 #Icon=utilities-terminal
+#Icon=final-term
 Icon=terminator
 Terminal=false
 Type=Application

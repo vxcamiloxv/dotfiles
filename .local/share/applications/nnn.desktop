@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Nnn - n³
+GenericName=File manager
+Comment=Terminal file manager
+Exec=urxvtcd -name Nnn -title N³ -e nnn %F
+Terminal=true
+Icon=system-file-manager
+MimeType=inode/directory;
+Categories=Utility;FileManager;

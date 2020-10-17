@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Lf FM
+GenericName=File manager
+Comment=Terminal file manager
+Exec=urxvtcd -name Lf -title Lf -e lf %F
+Terminal=true
+Icon=system-file-manager
+MimeType=inode/directory;
+Categories=Utility;FileManager;
