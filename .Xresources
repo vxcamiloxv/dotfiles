@@ -8,7 +8,7 @@
 !Xft.hinting: true
 !Xft.antialias: true
 !Xft.rgba: rgb
-
+Xcursor.theme: Adwaita
 
 ! ROFI
 !---------
@@ -58,16 +58,28 @@ URxvt.skipBuiltinGlyph: false
 URxvt.urgentOnBell: true
 URxvt.visualBell: true
 URxvt.internalBorder: 2
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 ! Scroll
 URxvt.scrollBar: false
 URxvt.skipScroll: true
 URxvt.jumpScroll: true
+URxvt.scrollstyle: plain
 URxvt.scrollTtyKeypress: true
 URxvt.scrollWithBuffer: true
 URxvt.scrollTtyOutput: false
 URxvt.secondaryScreen: true
 URxvt.secondaryScroll: false
+
+! Tabs
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+URxvt.tabbed.autohide:  yes
+URxvt.tabbed.new-button:  no
+URxvt.tabbed.title: no
 
 ! Colors and Font
 URxvt.depth: 32
@@ -103,33 +115,24 @@ URxvt.color14: #42717B
 URxvt.color7: #F2F1F0
 URxvt.color15: #F2F1F0
 
-URxvt.scrollstyle: plain
-
+! Plugins
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.rend.0: Uline Bold fg5
 URxvt.matcher.button: 1
-
 URxvt.keyboard-select.clipboard: true
 
-URxvt.keysym.M-n:           matcher:select
-URxvt.keysym.C-Delete:      matcher:last
-URxvt.keysym.M-Delete:      matcher:list
-URxvt.keysym.M-S:           perl:keyboard-select:activate
-URxvt.keysym.M-N:           perl:keyboard-select:search
-URxvt.keysym.M-w:           eval:selection_to_clipboard
-URxvt.keysym.C-y:           eval:paste_clipboard
-URxvt.keysym.C-Y:           eval:paste_primary
-URxvt.keysym.M-C-n:         command:\033]710;screen\007
-URxvt.keysym.Mod4-plus:     perl:font-size:increase
-URxvt.keysym.Mod4-minus:    perl:font-size:decrease
-URxvt.keysym.Mod4-equal:    perl:font-size:reset
-URxvt.keysym.Mod4-question: perl:font-size:show
-URxvt.keysym.C-9:           perl:font-size:show
-
-URxvt.tabbed.tabbar-fg: 2
-URxvt.tabbed.tabbar-bg: 0
-URxvt.tabbed.tab-fg: 3
-URxvt.tabbed.tab-bg: 0
-URxvt.tabbed.autohide:  yes
-URxvt.tabbed.new-button:  no
-URxvt.tabbed.title: no
+! Keybinding
+URxvt.keysym.Meta-n:           matcher:select
+URxvt.keysym.Control-Delete:   matcher:last
+URxvt.keysym.Meta-Delete:      matcher:list
+URxvt.keysym.Meta-S:           perl:keyboard-select:activate
+URxvt.keysym.Meta-N:           perl:keyboard-select:search
+URxvt.keysym.Meta-W:           eval:selection_to_clipboard
+URxvt.keysym.Control-Y:        eval:paste_clipboard
+URxvt.keysym.Control-Meta-y:   eval:paste_primary
+URxvt.keysym.Meta-Control-n:   command:\033]710;screen\007
+URxvt.keysym.Mod4-plus:        perl:font-size:increase
+URxvt.keysym.Mod4-minus:       perl:font-size:decrease
+URxvt.keysym.Mod4-equal:       perl:font-size:reset
+URxvt.keysym.Mod4-question:    perl:font-size:show
+URxvt.keysym.Control-9:        perl:font-size:show
