@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-source "`dirname $0`/scripts/run.sh"
-primary_screen=($(xrandr | grep -w connected | sed 's/primary //' | awk -F'[ +]' '{print $1,$3,$4}' | head -n 1))
+AWESOME_DIR=`dirname $0`
+source "$AWESOME_DIR/scripts/run.sh"
 
 # General config
 # ---------------
@@ -23,9 +23,9 @@ run udiskie --smart-tray --notify
 run emacs --daemon --no-splash
 run kupfer --no-splash
 run nextcloud
-#pgrep light-locker || light-locker &
 run redshift-gtk
-run xss-lock -- sflock -xshift $((${primary_screen[2]} / 2)) &
+xset s 600 500
+run xss-lock -- "$AWESOME_DIR/scripts/lock.sh" &
 #pgrep xautolock || xautolock -detectsleep -notify 300 -notifier 'xset dpms force off' -time 10 -locker 'light-locker-command -l' -killtime 30 -killer 'systemctl suspend$
 
 # Enable layoutscreen
