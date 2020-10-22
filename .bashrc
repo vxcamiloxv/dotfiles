@@ -52,7 +52,7 @@ export GIT_EDITOR="$(if [[ -n $DISPLAY ]]; then echo 'git-editor'; else echo 'em
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
 #Custom PATH
-PATH="/opt/android-sdk/emulator/:/opt/android-sdk/platform-tools/:$HOME/.scripts/:${PATH}"
+PATH="/opt/android-sdk/emulator/:/opt/android-sdk/platform-tools/:$HOME/.scripts/:$HOME/.local/bin/:${PATH}"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
